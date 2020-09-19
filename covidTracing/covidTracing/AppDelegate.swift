@@ -15,6 +15,11 @@ import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
+    
+    var window: UIWindow?
+    var locationManager: CLLocationManager!
+    var locDict: [String: Int] = [:]
+       
     func didReceiveEvents(_ events: [RadarEvent], user: RadarUser) {
         <#code#>
     }
@@ -30,11 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
     func didLog(message: String) {
         <#code#>
     }
-    
-
-    var window: UIWindow?
-    var locationManager: CLLocationManager
-    var locDict: [String: Int] = [:]
     
     // Firebase connection from app to database on Google Cloud Firestore
     func application(_ application: UIApplication,
@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
                 // This is where all of the places that have been identified with a user will go to the database.
                 print("Current Report: \(places)")
                 for place in places!{
-                    if let val = self.locDict[place.name] {
+                    if self.locDict[place.name] != nil {
                         self.locDict[place.name]!+=1
                         
                         if(self.locDict[place.name] == 5) {
@@ -72,6 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
                             //SEND DATA TO USER-SPECIFIC FIREBASE
                             self.sendToUserDb(place: place)
                             //SEND DATA TO LOCATION-SPECIFIC FIREBASE AND THEN INCREMENT
+                            self.sendToLocDb(place: place)
                         }
                     }
                     else{
@@ -97,11 +98,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
         
     }
     
+    func sendToLocDb(place: RadarPlace) {
+        let db = Firestore.firestore()
+        let locRep = db.collection("stores").document(place.name)
+        
+        //This will pull up all of the information related to a specific location.
+        
+        locRep.getDocument { (doc, error) in
+            if let doc = doc, doc.exists {
+                if var count = doc.get("visitors") as? Int{
+                    doc.reference.updateData(["visitorCount": count+1])
+                    
+                    if (count+1>=10) {
+                        doc.reference.updateData(["safety": "unsafe"])
+                    }
+                    
+                }
+            }
+            
+            else {
+                locRep.setData([
+                    "name": place.name,
+                    "geolocation": [place.location.coordinate.latitude, place.location.coordinate.longitude],
+                    "numVisitors" : 1,
+                    "safety": "safe",
+                    "infectedVisitorCount": 0
+                ]) { error in
+                    if let error = error {
+                        print("Whoops! There was an error while creating the location document: \(error)")
+                    } else {
+                        print("The creation of the location document is successful!")
+                    }
+                }
+                
+            }
+        }
+    }
+    
     
     func application(_application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        Radar.initialize(publishableKey: publishableKey)
-
+        FirebaseApp.configure()
+        Radar.initialize(publishableKey: publishableKey) //Radar API key
+        self.locationManager = CLLocationManager()
+        self.locationManager.requestAlwaysAuthorization()
+        Radar.setDelegate(self)
+        
         return true
     }
 

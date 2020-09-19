@@ -12,7 +12,7 @@
             <objects>
                 <viewController title="Home" id="BYZ-38-t0r" customClass="ViewController" customModule="covidTracing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cover4" translatesAutoresizingMaskIntoConstraints="NO" id="ooO-mG-fca">
@@ -28,7 +28,7 @@
                                     <attributedString key="attributedTitle">
                                         <fragment content="Create an Account">
                                             <attributes>
-                                                <font key="NSFont" size="32" name="AppleMyungjo"/>
+                                                <font key="NSFont" size="25" name="AppleMyungjo"/>
                                                 <font key="NSOriginalFont" size="32" name="AppleMyungjo"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
@@ -36,7 +36,7 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <segue destination="nRd-vD-LFb" kind="show" id="kA9-B1-Ecc"/>
+                                    <segue destination="nRd-vD-LFb" kind="showDetail" id="kA9-B1-Ecc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DOL-rc-fCH">
@@ -48,14 +48,14 @@
                                     <attributedString key="attributedTitle">
                                         <fragment content="Login">
                                             <attributes>
-                                                <font key="NSFont" size="32" name="AppleMyungjo"/>
+                                                <font key="NSFont" size="25" name="AppleMyungjo"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <segue destination="aof-Nt-KRe" kind="show" id="ajb-8s-kUv"/>
+                                    <segue destination="aof-Nt-KRe" kind="presentation" id="ajb-8s-kUv"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YRW-YR-fJt">
@@ -77,6 +77,11 @@
                         <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ao5-dI-JSv"/>
+                    <connections>
+                        <outlet property="createButton" destination="T10-tG-CQ3" id="Jnj-Mb-slz"/>
+                        <outlet property="loginButton" destination="DOL-rc-fCH" id="3CM-S2-xET"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -153,15 +158,31 @@
                                     </attributedString>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VdT-Sk-wAT">
+                                <rect key="frame" x="13" y="34" width="95" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="&lt; Back">
+                                            <attributes>
+                                                <font key="NSFont" metaFont="system" size="15"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="tCg-he-VF4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="0ns-Uc-CaG"/>
                     </view>
-                    <navigationItem key="navigationItem" id="bzd-wK-uZK"/>
+                    <navigationItem key="navigationItem" id="teQ-Qd-FxJ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cy9-b8-hTY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="411.59420289855075" y="-898.66071428571422"/>
+            <point key="canvasLocation" x="410.39999999999998" y="-899.26108374384239"/>
         </scene>
         <!--Login-->
         <scene sceneID="dZf-mG-Vo4">
@@ -214,17 +235,35 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f38-gF-26o">
+                                <rect key="frame" x="27" y="37" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="&lt; Back">
+                                            <attributes>
+                                                <font key="NSFont" metaFont="system" size="15"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="NQo-hx-Umf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="GoR-y2-bw7"/>
                     </view>
-                    <navigationItem key="navigationItem" id="yUe-7C-mSl"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zKS-La-ulA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="410.39999999999998" y="-147.78325123152709"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="NQo-hx-Umf"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="cover4" width="473" height="1024"/>
     </resources>

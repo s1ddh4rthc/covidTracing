@@ -9,12 +9,31 @@
 import UIKit
 import Firebase
 import RadarSDK
+import FirebaseFirestore
+import FirebaseAuth
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
+    func didReceiveEvents(_ events: [RadarEvent], user: RadarUser) {
+        <#code#>
+    }
+    
+    func didUpdateLocation(_ location: CLLocation, user: RadarUser) {
+        <#code#>
+    }
+    
+    func didFail(status: RadarStatus) {
+        <#code#>
+    }
+    
+    func didLog(message: String) {
+        <#code#>
+    }
+    
 
     var window: UIWindow?
-    var locManager: CLLocationManager
+    var locationManager: CLLocationManager
     var locDict: [String: Int] = [:]
     
     // Firebase connection from app to database on Google Cloud Firestore
@@ -31,20 +50,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
          Insert summary here later.
          
          */
+        
+        
         Radar.searchPlaces(
           near: location,
           radius: 30, //Based off what we wrote in RadarTracking.swift
-          chains: nil,
+          chains: ["costco", "starbucks"], // These are just two examples of chains that we're using.
           categories: ["food-beverage", "shopping-retail"],
           groups: nil,
           limit: 10
         ) { (status, location, places) in
             if(status == .success && places != nil && places!.count>0){
+                // This is where all of the places that have been identified with a user will go to the database.
                 print("Current Report: \(places)")
-                
-                // add all the detected places to location dictionary
                 for place in places!{
-                    
+                    if let val = self.locDict[place.name] {
+                        self.locDict[place.name]!+=1
+                        
+                        if(self.locDict[place.name] == 5) {
+                            print("Final: \(place.name)")
+                            //SEND DATA TO USER-SPECIFIC FIREBASE
+                            self.sendToUserDb(place: place)
+                            //SEND DATA TO LOCATION-SPECIFIC FIREBASE AND THEN INCREMENT
                         }
                     }
                     else{
@@ -57,10 +84,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
         }
     }
     
+    func sendToUserDb(place: RadarPlace) {
+        let db = Firestore.firestore()
+        let mail = UserDefaults.standard.string(forKey: "email")
+        let userRep = db.collection("users").document(mail!)
+        
+        userRep.getDocument { (document, error) in
+            
+        
+        }
+        
+        
+    }
     
     
     func application(_application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        Radar.initialize(publishableKey: publishableKey)
+
         return true
     }
 

@@ -8,12 +8,16 @@
 
 import UIKit
 import Firebase
+import RadarSDK
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
 
     var window: UIWindow?
+    var locManager: CLLocationManager
+    var locDict: [String: Int] = [:]
     
+    // Firebase connection from app to database on Google Cloud Firestore
     func application(_ application: UIApplication,
       didFinishLaunchingWithOptions launchOptions:
         [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -21,6 +25,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       return true
     }
 
+    func didUpdateClientLocation(_ location: CLLocation, stopped: Bool, source: RadarLocationSource) {
+        /*
+         
+         Insert summary here later.
+         
+         */
+        Radar.searchPlaces(
+          near: location,
+          radius: 30, //Based off what we wrote in RadarTracking.swift
+          chains: nil,
+          categories: ["food-beverage", "shopping-retail"],
+          groups: nil,
+          limit: 10
+        ) { (status, location, places) in
+            if(status == .success && places != nil && places!.count>0){
+                print("Current Report: \(places)")
+                
+                // add all the detected places to location dictionary
+                for place in places!{
+                    
+                        }
+                    }
+                    else{
+                        // make a new entry in dictionary
+                        print("NEW PLACE: \(place.name)")
+                        self.locDict[place.name] = 1
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    
     func application(_application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true

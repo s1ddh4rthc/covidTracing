@@ -17,6 +17,7 @@
 		56ED1FDF2515C709007797B7 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 56ED1FDE2515C709007797B7 /* Podfile */; };
 		AB4C0B68547840B385DEADC7 /* Pods_covidTracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA160EFC90543AC23833CC /* Pods_covidTracing.framework */; };
 		B58B051A2515FD6B005C98B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B58B05192515FD6B005C98B7 /* GoogleService-Info.plist */; };
+		B58B051E251613AF005C98B7 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B051D251613AF005C98B7 /* MapViewController.swift */; };
 		E59922902515D80C00AF29B9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E599228F2515D80C00AF29B9 /* LoginViewController.swift */; };
 		E59922922515D81900AF29B9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59922912515D81900AF29B9 /* RegisterViewController.swift */; };
 		E59922942515DA2300AF29B9 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59922932515DA2300AF29B9 /* DatabaseManager.swift */; };
@@ -36,6 +37,7 @@
 		56ED1FDE2515C709007797B7 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A29DD85F6BE0AFCB4CEF81F7 /* Pods-covidTracing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-covidTracing.release.xcconfig"; path = "Target Support Files/Pods-covidTracing/Pods-covidTracing.release.xcconfig"; sourceTree = "<group>"; };
 		B58B05192515FD6B005C98B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Documents/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B58B051D251613AF005C98B7 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D6BA160EFC90543AC23833CC /* Pods_covidTracing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_covidTracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E599228F2515D80C00AF29B9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E59922912515D81900AF29B9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				56ED1FD3251577D3007797B7 /* LaunchScreen.storyboard */,
 				56B11A9E2515FC6200980EE7 /* RadarTracking.swift */,
 				E59922932515DA2300AF29B9 /* DatabaseManager.swift */,
+				B58B051D251613AF005C98B7 /* MapViewController.swift */,
 				B58B05192515FD6B005C98B7 /* GoogleService-Info.plist */,
 				56ED1FD6251577D3007797B7 /* Info.plist */,
 			);
@@ -233,6 +236,7 @@
 				56ED1FCD251577D1007797B7 /* ViewController.swift in Sources */,
 				56ED1FC9251577D1007797B7 /* AppDelegate.swift in Sources */,
 				56ED1FCB251577D1007797B7 /* SceneDelegate.swift in Sources */,
+				B58B051E251613AF005C98B7 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

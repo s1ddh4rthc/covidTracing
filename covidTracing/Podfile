@@ -10,6 +10,7 @@ target 'covidTracing' do
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
   pod 'RadarSDK', '~> 3.0.0'
+  pod 'Firebase/Database'
 
   
   

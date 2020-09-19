@@ -279,6 +279,7 @@
                                 <connections>
                                     <action selector="loginButtonTapped:" destination="aof-Nt-KRe" eventType="touchUpInside" id="qei-9A-anI"/>
                                     <action selector="loginToAppButton:" destination="LH7-Rr-5ZU" eventType="touchUpInside" id="HCV-sY-Tfi"/>
+                                    <segue destination="5Qh-eF-5aB" kind="show" id="6CS-Ot-r2V"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -299,17 +300,30 @@
         <!--Map-->
         <scene sceneID="mmb-97-5nz">
             <objects>
-                <viewController title="Map" id="5Qh-eF-5aB" sceneMemberID="viewController">
+                <viewController title="Map" id="5Qh-eF-5aB" customClass="MapViewController" customModule="covidTracing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GL3-al-TAj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="AhR-gH-CEq">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="5Qh-eF-5aB" id="rss-So-RXM"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="MRf-Ue-uKS"/>
                     </view>
+                    <navigationItem key="navigationItem" id="90p-pR-Jp7"/>
+                    <connections>
+                        <outlet property="mapView" destination="AhR-gH-CEq" id="Wyr-gr-c8V"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z50-rf-RcE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2553" y="-686"/>
+            <point key="canvasLocation" x="2552.8000000000002" y="-686.45320197044339"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

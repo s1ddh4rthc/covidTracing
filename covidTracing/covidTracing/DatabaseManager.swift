@@ -38,6 +38,57 @@ extension DatabaseManager {
         
     }
     
+    public func saveUserLocation(with user: CovidUser, completion: @escaping (Bool) -> Void) {
+        
+        self.database.child("places/" + user.safeEmail).observeSingleEvent(of: .value) { (snapshot) in
+            
+            if var userLocationCollection = snapshot.value as? [[String:Double]] {
+                
+                let newElement = [
+                    "latitude" : 36.1343,
+                    "longitude" : 56.75
+                ]
+                
+                userLocationCollection.append(newElement)
+                
+                self.database.child("places/" + user.safeEmail).setValue(userLocationCollection) { (error, _) in
+                    
+                    guard error == nil else {
+                        completion(false)
+                        return
+                    }
+                    
+                    completion(true)
+                    
+                }
+                
+                
+            } else {
+                
+                let newCollection : [[String:Double]] = [
+                    [
+                        "latitude" : 96.78,
+                        "longitude" : 47.69
+                    ]
+                ]
+                
+                self.database.child("places/" + user.safeEmail).setValue(newCollection) { (error, _) in
+                    
+                    guard error == nil else {
+                        completion(false)
+                        return
+                    }
+                    
+                    completion(true)
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+    
 }
 
 struct CovidUser {

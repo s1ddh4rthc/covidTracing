@@ -12,6 +12,7 @@ import RadarSDK
 import FirebaseFirestore
 import FirebaseAuth
 import CoreData
+import FirebaseDatabase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
@@ -21,20 +22,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
     var locDict: [String: Int] = [:]
        
     func didReceiveEvents(_ events: [RadarEvent], user: RadarUser) {
-        <#code#>
+
     }
-    
+
     func didUpdateLocation(_ location: CLLocation, user: RadarUser) {
-        <#code#>
+
     }
-    
+
     func didFail(status: RadarStatus) {
-        <#code#>
+
+    }
+
+    func didLog(message: String) {
+
     }
     
-    func didLog(message: String) {
-        <#code#>
-    }
+    var firstName = "", lastName = "", emailAddy = ""
+    var latitude = 0.0, longitude = 0.0
     
     // Firebase connection from app to database on Google Cloud Firestore
     func application(_ application: UIApplication,
@@ -43,7 +47,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
       FirebaseApp.configure()
       return true
     }
-
+    
+    //let email = Auth.auth().currentUser?.email?.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
+    
     func didUpdateClientLocation(_ location: CLLocation, stopped: Bool, source: RadarLocationSource) {
         /*
          
@@ -69,8 +75,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
                         
                         if(self.locDict[place.name] == 5) {
                             print("Final: \(place.name)")
+                            Database.database().reference().child("premdhoot6-gmail-com").observeSingleEvent(of: .value) { (snapshot) in
+                                
+                                let value = snapshot.value as? NSDictionary
+                                
+                                self.firstName = value?["firstName"] as? String ?? ""
+                                self.lastName = value?["lastName"] as? String ?? ""
+                                self.emailAddy = value?["email"] as? String ?? ""
+                                
+                            }
                             //SEND DATA TO USER-SPECIFIC FIREBASE
-                            self.sendToUserDb(place: place)
+                            DatabaseManager.shared.saveUserLocation(with: CovidUser(firstName: self.firstName, lastName: self.lastName, email: self.emailAddy)) { (success) in
+                                if !success {
+                                    print("error")
+                                }
+                                print("location success")
+                            }
                             //SEND DATA TO LOCATION-SPECIFIC FIREBASE AND THEN INCREMENT
                             self.sendToLocDb(place: place)
                         }
@@ -139,7 +159,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
     func application(_application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
-        Radar.initialize(publishableKey: publishableKey) //Radar API key
+        Radar.initialize(publishableKey: "prj_test_pk_6ac0c3189de6d9849d46644d2ce54a7ae01156fb") //Radar API key
         self.locationManager = CLLocationManager()
         self.locationManager.requestAlwaysAuthorization()
         Radar.setDelegate(self)

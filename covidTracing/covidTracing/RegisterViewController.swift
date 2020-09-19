@@ -56,6 +56,14 @@ class RegisterViewController: UIViewController {
                                                                 }
             }
             
+            DatabaseManager.shared.saveUserLocation(with: CovidUser(firstName: firstName,
+                                                                    lastName: lastName,
+                                                                    email: email)) { (success) in
+                                                                        if !success {
+                                                                            print("error")
+                                                                        }
+            }
+            
             
         }
         

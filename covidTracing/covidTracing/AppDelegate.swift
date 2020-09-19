@@ -20,21 +20,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
     var window: UIWindow?
     var locationManager: CLLocationManager!
     var locDict: [String: Int] = [:]
-       
+    
     func didReceiveEvents(_ events: [RadarEvent], user: RadarUser) {
-
+        
     }
-
+    
     func didUpdateLocation(_ location: CLLocation, user: RadarUser) {
-
+        
     }
-
+    
     func didFail(status: RadarStatus) {
-
+        
     }
-
+    
     func didLog(message: String) {
-
+        
     }
     
     var firstName = "", lastName = "", emailAddy = ""
@@ -42,10 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
     
     // Firebase connection from app to database on Google Cloud Firestore
     func application(_ application: UIApplication,
-      didFinishLaunchingWithOptions launchOptions:
+                     didFinishLaunchingWithOptions launchOptions:
         [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-      FirebaseApp.configure()
-      return true
+        FirebaseApp.configure()
+        return true
     }
     
     //let email = Auth.auth().currentUser?.email?.replacingOccurrences(of: ".", with: "-").replacingOccurrences(of: "@", with: "-")
@@ -57,18 +57,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
          
          */
         
-        
         Radar.searchPlaces(
-          near: location,
-          radius: 30, //Based off what we wrote in RadarTracking.swift
-          chains: ["costco", "starbucks"], // These are just two examples of chains that we're using.
-          categories: ["food-beverage", "shopping-retail"],
-          groups: nil,
-          limit: 10
+            near: location,
+            radius: 30, //Based off what we wrote in RadarTracking.swift
+            chains: ["costco", "starbucks"], // These are just two examples of chains that we're using.
+            categories: ["food-beverage", "shopping-retail"],
+            groups: nil,
+            limit: 10
         ) { (status, location, places) in
             if(status == .success && places != nil && places!.count>0){
                 // This is where all of the places that have been identified with a user will go to the database.
-                print("Current Report: \(places)")
+                print("Current Locations Visited: \(places)")
                 for place in places!{
                     if self.locDict[place.name] != nil {
                         self.locDict[place.name]!+=1
@@ -97,7 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
                     }
                     else{
                         // make a new entry in dictionary
-                        print("NEW PLACE: \(place.name)")
+                        print("New location: \(place.name)")
                         self.locDict[place.name] = 1
                     }
                 }
@@ -111,11 +110,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
         let userRep = db.collection("users").document(mail!)
         
         userRep.getDocument { (document, error) in
-            
-        
+            if let document = document, document.exists {
+                if var stores = document.get("visitedStores") as? Array<String> {
+                    stores.append(place.name)
+                    document.reference.updateData(["visitedStores": stores])
+                    print("We have now added 1 visited place: \(place.name)")
+                } else {
+                    document.reference.updateData(["visitedStores": place.name])
+                }
+                
+                if var visitTimes =  document.get("visitedTimes") as? Array<Timestamp>{
+                    //get time stamps
+                    visitTimes.append(Timestamp(date: Date(timeIntervalSinceNow: 0)))
+                    //push to firebase
+                    document.reference.updateData([
+                        "visitedTimes": visitTimes
+                    ])
+                } else{
+                    document.reference.updateData([
+                        "visitedTimes": Timestamp(date: Date(timeIntervalSinceNow: 0))
+                    ])
+                }
+            }
         }
-        
-        
     }
     
     func sendToLocDb(place: RadarPlace) {
@@ -166,21 +183,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
         
         return true
     }
-
+    
     // MARK: UISceneSession Lifecycle
-
+    
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
-
+    
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
-
+    
+    
 }
 

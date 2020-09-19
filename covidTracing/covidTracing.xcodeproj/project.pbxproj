@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		56B11A9F2515FC6200980EE7 /* RadarTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B11A9E2515FC6200980EE7 /* RadarTracking.swift */; };
 		56ED1FC9251577D1007797B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED1FC8251577D1007797B7 /* AppDelegate.swift */; };
 		56ED1FCB251577D1007797B7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED1FCA251577D1007797B7 /* SceneDelegate.swift */; };
 		56ED1FCD251577D1007797B7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED1FCC251577D1007797B7 /* ViewController.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		40F46B4B294EA888BC1E4E3D /* Pods-covidTracing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-covidTracing.debug.xcconfig"; path = "Target Support Files/Pods-covidTracing/Pods-covidTracing.debug.xcconfig"; sourceTree = "<group>"; };
+		56B11A9E2515FC6200980EE7 /* RadarTracking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadarTracking.swift; sourceTree = "<group>"; };
 		56ED1FC5251577D1007797B7 /* covidTracing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = covidTracing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56ED1FC8251577D1007797B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56ED1FCA251577D1007797B7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				E59922912515D81900AF29B9 /* RegisterViewController.swift */,
 				E599228F2515D80C00AF29B9 /* LoginViewController.swift */,
 				56ED1FD3251577D3007797B7 /* LaunchScreen.storyboard */,
+				56B11A9E2515FC6200980EE7 /* RadarTracking.swift */,
 				E59922932515DA2300AF29B9 /* DatabaseManager.swift */,
 				B58B05172515EB71005C98B7 /* GoogleService-Info.plist */,
 				56ED1FD6251577D3007797B7 /* Info.plist */,
@@ -225,6 +228,7 @@
 			files = (
 				E59922902515D80C00AF29B9 /* LoginViewController.swift in Sources */,
 				E59922922515D81900AF29B9 /* RegisterViewController.swift in Sources */,
+				56B11A9F2515FC6200980EE7 /* RadarTracking.swift in Sources */,
 				E59922942515DA2300AF29B9 /* DatabaseManager.swift in Sources */,
 				56ED1FCD251577D1007797B7 /* ViewController.swift in Sources */,
 				56ED1FC9251577D1007797B7 /* AppDelegate.swift in Sources */,

@@ -13,6 +13,7 @@
 		56ED1FD0251577D1007797B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56ED1FCE251577D1007797B7 /* Main.storyboard */; };
 		56ED1FD2251577D3007797B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56ED1FD1251577D3007797B7 /* Assets.xcassets */; };
 		56ED1FD5251577D3007797B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56ED1FD3251577D3007797B7 /* LaunchScreen.storyboard */; };
+		56ED1FDD2515C5E8007797B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56ED1FDC2515C5E8007797B7 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		56ED1FD1251577D3007797B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		56ED1FD4251577D3007797B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		56ED1FD6251577D3007797B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		56ED1FDC2515C5E8007797B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				56ED1FCE251577D1007797B7 /* Main.storyboard */,
 				56ED1FD1251577D3007797B7 /* Assets.xcassets */,
 				56ED1FD3251577D3007797B7 /* LaunchScreen.storyboard */,
+				56ED1FDC2515C5E8007797B7 /* GoogleService-Info.plist */,
 				56ED1FD6251577D3007797B7 /* Info.plist */,
 			);
 			path = covidTracing;
@@ -126,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56ED1FD5251577D3007797B7 /* LaunchScreen.storyboard in Resources */,
+				56ED1FDD2515C5E8007797B7 /* GoogleService-Info.plist in Resources */,
 				56ED1FD2251577D3007797B7 /* Assets.xcassets in Resources */,
 				56ED1FD0251577D1007797B7 /* Main.storyboard in Resources */,
 			);

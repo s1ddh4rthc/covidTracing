@@ -87,11 +87,41 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
-    func getInfected() -> [[Int]] {
+    func fetchInfected() -> [[Int]] {
         var finGeo: [[Int]] = [[]]
         let db = Firestore.firestore()
+        db.collection("stores").whereField("infectedVisitorCount", isGreaterThan: 0)
+            .getDocuments() { (querySnapshot, error) in
+                if let error = error {
+                    print("Whoops! There was an error pulling up the documents: \(error)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        if let geo = document.get("geolocation") as? [Int] {
+                            finGeo.append(geo)
+                        }
+                    }
+                }
+        }
+        return finGeo
     }
-        
+    
+    func fetchBusy() -> [[Int]] {
+        var finGeo: [[Int]] = [[]]
+        let db = Firestore.firestore()
+        db.collection("stores").whereField("visitorCount", isGreaterThan: 10)
+            .getDocuments() { (querySnapshot, error) in
+                if let error = error {
+                    print("Whoops! There was an error pulling up the documents: \(error)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        if let geo = document.get("geolocation") as? [Int] {
+                            finGeo.append(geo)
+                        }
+                    }
+                }
+        }
+        return finGeo
+    }
         
     
     func setupLocationManager() {

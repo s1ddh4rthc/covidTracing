@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
         configureButtons()
     }
     func configureButtons(){
-        loginToAppButton.layer.cornerRadius = 0.1 * loginToAppButton.bounds.size.width
+        loginToAppButton.layer.cornerRadius = 0.05 * loginToAppButton.bounds.size.width
         loginToAppButton.clipsToBounds = true
     }
     @IBAction func loginButtonTapped(_ sender: Any) {

@@ -70,7 +70,7 @@ class RegisterViewController: UIViewController {
     }
     
     func configureButtons(){
-        createAccountButton.layer.cornerRadius = 0.1 * createAccountButton.bounds.size.width
+        createAccountButton.layer.cornerRadius = 0.05 * createAccountButton.bounds.size.width
         createAccountButton.clipsToBounds = true
     }
     

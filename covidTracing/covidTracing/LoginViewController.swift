@@ -14,12 +14,18 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    @IBOutlet var loginToAppButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        configureButtons()
     }
-    
+    func configureButtons(){
+        loginToAppButton.layer.cornerRadius = 0.1 * loginToAppButton.bounds.size.width
+        loginToAppButton.clipsToBounds = true
+    }
     @IBAction func loginButtonTapped(_ sender: Any) {
         
         emailTextField.resignFirstResponder()

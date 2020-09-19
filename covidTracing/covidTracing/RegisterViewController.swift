@@ -17,6 +17,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
+    @IBOutlet var createAccountButton: UIButton!
     
     @IBAction func signUpButtonTapped(_ sender: Any) {
         
@@ -65,8 +66,13 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        configureButtons()
     }
     
+    func configureButtons(){
+        createAccountButton.layer.cornerRadius = 0.1 * createAccountButton.bounds.size.width
+        createAccountButton.clipsToBounds = true
+    }
     
     
 

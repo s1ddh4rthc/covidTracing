@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -302,6 +302,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
                                 <connections>
+                                    <action selector="myConditionPressed:" destination="5Qh-eF-5aB" eventType="touchUpInside" id="PcV-8J-chz"/>
                                     <segue destination="4LT-AX-YuF" kind="show" id="kdI-sC-Lui"/>
                                 </connections>
                             </button>
@@ -463,6 +464,9 @@
                                 <state key="normal" title="See Nearby Hospitals">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="hospitalsButtonPressed:" destination="4LT-AX-YuF" eventType="touchUpInside" id="dCM-Gy-EPo"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Experiencing any of the above? Time to get tested!" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6cu-wM-Y5Y">
                                 <rect key="frame" x="31" y="433" width="313" height="62"/>
@@ -509,6 +513,7 @@ Diarrhea</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="kdI-sC-Lui"/>
         <segue reference="gfQ-TK-7ib"/>
         <segue reference="tCg-he-VF4"/>
     </inferredMetricsTieBreakers>

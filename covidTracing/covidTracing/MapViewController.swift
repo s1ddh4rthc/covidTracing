@@ -24,7 +24,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var red: Bool = false
     var yellow: Bool = false
     
-    
     var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
@@ -71,9 +70,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     print("Whoops! There was an error pulling up the documents: \(error)")
                 } else {
                     self.red = true
-                    
                     for document in querySnapshot!.documents {
-                        if let geo = document.get("geolocation") as? [Double]{
+                        if let geo = document.get("geolocation") as? [Double] {
                             if let name = document.get("name") as? String{
                                 print("infected: \(name)")
                                 let annot = MKPointAnnotation()
@@ -91,16 +89,17 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 }
         }
         
-        
         //This is the code to put yellow zones on the map.
         db.collection("stores").whereField("safety", isEqualTo: "crowd")
             .getDocuments() { (querySnapshot, error) in
                 if let error = error {
                     print("Whoops! There was an error pulling up the documents: \(error)")
                 } else {
-                    self.yellow = true
+                    print("hello")
+                    self.red = false
                     for document in querySnapshot!.documents {
-                        if let geo = document.get("geolocation") as? [Double]{
+                        print(document.data())
+                        if let geo = document.get("geolocation") as? [Double] {
                             if let name = document.get("name") as? String{
                                 print("Busy: \(name)")
                                 let yellowDots = MKPointAnnotation()

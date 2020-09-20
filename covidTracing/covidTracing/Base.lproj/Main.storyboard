@@ -312,26 +312,39 @@
                                     <outlet property="delegate" destination="5Qh-eF-5aB" id="rss-So-RXM"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVV-8x-6lS">
-                                <rect key="frame" x="307" y="657" width="19.666666666666657" height="22"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7dh-uj-Rgj">
+                                <rect key="frame" x="28" y="641" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="person.circle" catalog="system"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" image="pencil" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                </state>
+                                <connections>
+                                    <segue destination="4LT-AX-YuF" kind="show" id="kdI-sC-Lui"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZtX-1h-9xR">
-                                <rect key="frame" x="156" y="641" width="62" height="55"/>
+                                <rect key="frame" x="137" y="626" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.98970144120000003" green="0.97077495179999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <size key="titleShadowOffset" width="2" height="0.0"/>
                                 <state key="normal" image="map" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7dh-uj-Rgj">
-                                <rect key="frame" x="16" y="644" width="68" height="48"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVV-8x-6lS">
+                                <rect key="frame" x="277" y="641" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <state key="normal" image="pencil" catalog="system"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <state key="normal" image="person.circle" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                </state>
+                                <connections>
+                                    <segue destination="hy0-PU-J8e" kind="show" id="BuF-8b-sNB"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -339,13 +352,47 @@
                     </view>
                     <navigationItem key="navigationItem" id="90p-pR-Jp7"/>
                     <connections>
+                        <outlet property="conditionButton" destination="7dh-uj-Rgj" id="lLH-G5-434"/>
                         <outlet property="mapButton" destination="ZtX-1h-9xR" id="gNw-Jy-CRV"/>
                         <outlet property="mapView" destination="AhR-gH-CEq" id="Wyr-gr-c8V"/>
+                        <outlet property="profileButton" destination="bVV-8x-6lS" id="iHB-9s-8lW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z50-rf-RcE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2552.8000000000002" y="-686.45320197044339"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="cLO-QU-ARp">
+            <objects>
+                <viewController title="Profile" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="hy0-PU-J8e" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2cZ-Sm-cvs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Lnf-qt-e3z"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="PVR-1U-Zlj"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VLv-IX-BFe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4254" y="-107"/>
+        </scene>
+        <!--Condition-->
+        <scene sceneID="Zea-Fv-9nX">
+            <objects>
+                <viewController title="Condition" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="4LT-AX-YuF" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gAA-FA-o00">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Tjq-rg-Wgg"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Zse-Kj-fvf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2hi-qM-pxG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4246" y="-1097"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

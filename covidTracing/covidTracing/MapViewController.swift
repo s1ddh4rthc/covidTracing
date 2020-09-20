@@ -17,6 +17,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     
     @IBOutlet weak var mapButton: UIButton!
+    @IBOutlet weak var conditionButton: UIButton!
+    @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     
     var red: Bool = false
@@ -89,11 +91,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 }
         }
         
-        //To give attributes to buttons
-        func configureButtons(){
-            mapButton.layer.cornerRadius = 0.1 * mapButton.bounds.size.width
-            mapButton.clipsToBounds = true
-        }
         
         //This is the code to put yellow zones on the map.
         db.collection("stores").whereField("safety", isEqualTo: "crowd")
@@ -128,6 +125,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
+    //To give attributes to buttons
+    func configureButtons(){
+        mapButton.layer.cornerRadius = 0.5 * mapButton.bounds.size.width
+        mapButton.clipsToBounds = true
+        conditionButton.layer.cornerRadius = 0.5 * conditionButton.bounds.size.width
+        conditionButton.clipsToBounds = true
+        profileButton.layer.cornerRadius = 0.5 * profileButton.bounds.size.width
+        profileButton.clipsToBounds = true
+    }
     
     func fetchInfected() -> [[Int]] {
         var finGeo: [[Int]] = [[]]

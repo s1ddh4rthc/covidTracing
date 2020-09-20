@@ -143,7 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
         
         locRep.getDocument { (doc, error) in
             if let doc = doc, doc.exists {
-                if var count = doc.get("visitors") as? Int{
+                if var count = doc.get("visitorCount") as? Int{
                     doc.reference.updateData(["visitorCount": count+1])
                     
                     if (count+1>=10) {
@@ -157,7 +157,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
                 locRep.setData([
                     "name": place.name,
                     "geolocation": [place.location.coordinate.latitude, place.location.coordinate.longitude],
-                    "numVisitors" : 1,
+                    "visitorCount" : 1,
                     "safety": "safe",
                     "infectedVisitorCount": 0
                 ]) { error in

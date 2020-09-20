@@ -111,8 +111,14 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     
                 }
                 
+                if(circleArray.count>0) {
+                    let region = MKCoordinateRegion(center: circleArray[0].coordinate, latitudinalMeters: 9000, longitudinalMeters: 9000)
+                    self.mapView.setRegion(region, animated: true)
+                }
+                
         }
     }
+    
     
     func fetchInfected() -> [[Int]] {
         var finGeo: [[Int]] = [[]]
@@ -148,6 +154,23 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 }
         }
         return finGeo
+    }
+    
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let circlesView: MKCircleRenderer = MKCircleRenderer(overlay: overlay)
+        
+        if (red) {
+            circlesView.fillColor = UIColor.red
+        } else {
+            circlesView.fillColor = UIColor.yellow
+        }
+        
+        circlesView.strokeColor = UIColor.black
+        circlesView.alpha = 0.5
+        circlesView.lineWidth = 1.5
+        
+        return circlesView
     }
 
 }

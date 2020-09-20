@@ -31,10 +31,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         super.viewDidLoad()
         
         configureButtons()
+        searchBar.delegate = self
         
         let locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        mapView.showsTraffic = true
+        mapView.showsCompass = false
 
         if (CLLocationManager.locationServicesEnabled()) {
             locationManager.requestAlwaysAuthorization()
@@ -46,11 +49,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             let coordinate = CLLocationCoordinate2D.init(latitude: userLocation.latitude, longitude: userLocation.longitude)
             let region = MKCoordinateRegion.init(center: coordinate, span: span)
             mapView.setRegion(region, animated: true)
-            let annotation = MKPointAnnotation()
-            annotation.title = "Current Location"
-            annotation.coordinate.latitude = userLocation.latitude
-            annotation.coordinate.longitude = userLocation.longitude
-            mapView.addAnnotation(annotation)
         }
 
         self.locationManager = locationManager
@@ -118,7 +116,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 
                 if(circleArray.count>0) {
                     let region = MKCoordinateRegion(center: circleArray[0].coordinate, latitudinalMeters: 9000, longitudinalMeters: 9000)
-                    self.mapView.setRegion(region, animated: true)
+                    //self.mapView.setRegion(region, animated: true)
                 }
                 
         }
@@ -203,10 +201,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 
             } else {
                 
-                let latitude = response?.boundingRegion.center.latitude
+                let latitude = response!.boundingRegion.center.latitude
                 let longitude = response!.boundingRegion.center.longitude
                 
-                let coordinate : CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude!, longitude)
+                let coordinate : CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
                 let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
                 let region = MKCoordinateRegion(center: coordinate, span: span)
                 

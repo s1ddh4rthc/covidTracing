@@ -205,7 +205,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 let longitude = response!.boundingRegion.center.longitude
                 
                 let coordinate : CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
-                let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+                let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
                 let region = MKCoordinateRegion(center: coordinate, span: span)
                 
                 self.mapView.setRegion(region, animated: true)

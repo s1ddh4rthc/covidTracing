@@ -20,7 +20,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet weak var conditionButton: UIButton!
     @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var logoImage: UIImageView!
     
     var red: Bool = false
     var yellow: Bool = false
@@ -133,8 +132,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         conditionButton.clipsToBounds = true
         profileButton.layer.cornerRadius = 0.5 * profileButton.bounds.size.width
         profileButton.clipsToBounds = true
-        logoImage.layer.cornerRadius = 0.5 * logoImage.bounds.size.width
-        logoImage.clipsToBounds = true
     }
     
     func fetchInfected() -> [[Int]] {

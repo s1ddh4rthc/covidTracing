@@ -16,6 +16,7 @@
 		56ED1FD5251577D3007797B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56ED1FD3251577D3007797B7 /* LaunchScreen.storyboard */; };
 		56ED1FDF2515C709007797B7 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 56ED1FDE2515C709007797B7 /* Podfile */; };
 		AB4C0B68547840B385DEADC7 /* Pods_covidTracing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6BA160EFC90543AC23833CC /* Pods_covidTracing.framework */; };
+		B526886D251733D800E11419 /* MyCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B526886C251733D800E11419 /* MyCondition.swift */; };
 		B5577C6D25170701002D37C7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5577C6C25170701002D37C7 /* ProfileView.swift */; };
 		B5CA06D02516B85800A8BE82 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA06CF2516B85800A8BE82 /* MapViewController.swift */; };
 		E59922902515D80C00AF29B9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E599228F2515D80C00AF29B9 /* LoginViewController.swift */; };
@@ -38,6 +39,7 @@
 		56ED1FD6251577D3007797B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56ED1FDE2515C709007797B7 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A29DD85F6BE0AFCB4CEF81F7 /* Pods-covidTracing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-covidTracing.release.xcconfig"; path = "Target Support Files/Pods-covidTracing/Pods-covidTracing.release.xcconfig"; sourceTree = "<group>"; };
+		B526886C251733D800E11419 /* MyCondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCondition.swift; sourceTree = "<group>"; };
 		B5577C6C25170701002D37C7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		B5CA06CF2516B85800A8BE82 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		D6BA160EFC90543AC23833CC /* Pods_covidTracing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_covidTracing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +116,7 @@
 				B5577C6C25170701002D37C7 /* ProfileView.swift */,
 				E59922972516989C00AF29B9 /* GoogleService-Info.plist */,
 				56ED1FD6251577D3007797B7 /* Info.plist */,
+				B526886C251733D800E11419 /* MyCondition.swift */,
 			);
 			path = covidTracing;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				56B11A9F2515FC6200980EE7 /* RadarTracking.swift in Sources */,
 				E59922942515DA2300AF29B9 /* DatabaseManager.swift in Sources */,
 				56ED1FCD251577D1007797B7 /* ViewController.swift in Sources */,
+				B526886D251733D800E11419 /* MyCondition.swift in Sources */,
 				56ED1FC9251577D1007797B7 /* AppDelegate.swift in Sources */,
 				56ED1FCB251577D1007797B7 /* SceneDelegate.swift in Sources */,
 				B5CA06D02516B85800A8BE82 /* MapViewController.swift in Sources */,

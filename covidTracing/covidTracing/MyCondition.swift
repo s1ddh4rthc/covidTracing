@@ -12,13 +12,19 @@ class MyCondition: UIViewController {
     
     @IBOutlet weak var switchButton: UISwitch!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var testedText: UITextView!
+    @IBOutlet weak var nearbyHospitals: UIButton!
     
     @IBAction func switchButtonPressed(_ sender: Any) {
         
         if switchButton.isOn {
-            datePicker.backgroundColor = .white
+            datePicker.backgroundColor = .darkGray
+            datePicker.layer.cornerRadius = 0.05 * datePicker.bounds.size.width
+            datePicker.clipsToBounds = true
+            testedText.alpha = 1
         } else {
             datePicker.backgroundColor = .black
+            testedText.alpha = 0
         }
         
     }
@@ -26,7 +32,9 @@ class MyCondition: UIViewController {
         super.viewDidLoad()
         
         datePicker.backgroundColor = .black
-        
+        testedText.alpha = 0
+        nearbyHospitals.layer.cornerRadius = 0.05 * nearbyHospitals.bounds.size.width
+        nearbyHospitals.clipsToBounds = true
     }
     
 }

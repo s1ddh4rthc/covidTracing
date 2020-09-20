@@ -48,13 +48,13 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dl7-9L-Er6">
-                                <rect key="frame" x="66" y="207" width="242" height="40"/>
+                                <rect key="frame" x="66" y="217" width="242" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <attributedString key="attributedText">
                                     <fragment content="The best contact tracing app to stay safe.">
                                         <attributes>
-                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <font key="NSFont" size="12" name="Avenir-Book"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -360,10 +360,6 @@
                                     <segue destination="5Qh-eF-5aB" kind="show" id="9bC-oR-pwn"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="BRh-3r-Ue3">
-                                <rect key="frame" x="67" y="159.66666666666674" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pGH-JE-eFv">
                                 <rect key="frame" x="98" y="647" width="179" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -380,6 +376,10 @@
                                     </attributedString>
                                 </state>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Screen Shot 2020-09-19 at 10.53.57 PM" translatesAutoresizingMaskIntoConstraints="NO" id="BRh-3r-Ue3">
+                                <rect key="frame" x="67" y="132" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                         <viewLayoutGuide key="safeArea" id="Lnf-qt-e3z"/>
@@ -417,12 +417,6 @@
                                     <segue destination="5Qh-eF-5aB" kind="show" id="gfQ-TK-7ib"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="image_processing20200410-19194-1251ycn" translatesAutoresizingMaskIntoConstraints="NO" id="Ukn-U0-fdP">
-                                <rect key="frame" x="67" y="164" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                            </imageView>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="miO-CO-4uk">
                                 <rect key="frame" x="284" y="666" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -436,6 +430,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Screen Shot 2020-09-19 at 10.53.41 PM" translatesAutoresizingMaskIntoConstraints="NO" id="Ukn-U0-fdP">
+                                <rect key="frame" x="67" y="127" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                         <viewLayoutGuide key="safeArea" id="Tjq-rg-Wgg"/>
@@ -448,17 +448,17 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6CS-Ot-r2V"/>
+        <segue reference="gfQ-TK-7ib"/>
         <segue reference="tCg-he-VF4"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Screen Shot 2020-09-19 at 10.12.39 PM" width="1204" height="286"/>
         <image name="Screen Shot 2020-09-19 at 10.28.31 PM" width="1426" height="374"/>
+        <image name="Screen Shot 2020-09-19 at 10.53.41 PM" width="1456" height="500"/>
+        <image name="Screen Shot 2020-09-19 at 10.53.57 PM" width="1202" height="316"/>
         <image name="Screen Shot 2020-09-19 at 9.37.27 PM" width="1392" height="1326"/>
         <image name="cover4" width="473" height="1024"/>
-        <image name="image_processing20200410-19194-1251ycn" width="800" height="736"/>
         <image name="map" catalog="system" width="128" height="113"/>
-        <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <image name="thermometer" catalog="system" width="87" height="128"/>
     </resources>

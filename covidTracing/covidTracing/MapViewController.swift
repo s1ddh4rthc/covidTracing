@@ -13,13 +13,13 @@ import Firebase
 import FirebaseFirestore
 import FirebaseAuth
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
-    
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var mapButton: UIButton!
     @IBOutlet weak var conditionButton: UIButton!
     @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var red: Bool = false
     var yellow: Bool = false
@@ -185,6 +185,36 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         circlesView.lineWidth = 1.5
         
         return circlesView
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        let searchRequest = MKLocalSearch.Request()
+        searchRequest.naturalLanguageQuery = searchBar.text!
+        
+        let activeSearch = MKLocalSearch(request: searchRequest)
+        
+        activeSearch.start {
+            (response, error) in
+            
+            if response == nil {
+                
+                print("error")
+                
+            } else {
+                
+                let latitude = response?.boundingRegion.center.latitude
+                let longitude = response!.boundingRegion.center.longitude
+                
+                let coordinate : CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude!, longitude)
+                let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+                let region = MKCoordinateRegion(center: coordinate, span: span)
+                
+                self.mapView.setRegion(region, animated: true)
+            }
+            
+        }
+        
     }
 
 }

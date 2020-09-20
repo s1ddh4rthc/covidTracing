@@ -22,6 +22,7 @@
 		E59922922515D81900AF29B9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59922912515D81900AF29B9 /* RegisterViewController.swift */; };
 		E59922942515DA2300AF29B9 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59922932515DA2300AF29B9 /* DatabaseManager.swift */; };
 		E59922982516989C00AF29B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E59922972516989C00AF29B9 /* GoogleService-Info.plist */; };
+		E599229A2517262500AF29B9 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59922992517262500AF29B9 /* LocationSearchTable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		E59922912515D81900AF29B9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		E59922932515DA2300AF29B9 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		E59922972516989C00AF29B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E59922992517262500AF29B9 /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				56ED1FCA251577D1007797B7 /* SceneDelegate.swift */,
 				56ED1FCC251577D1007797B7 /* ViewController.swift */,
 				56ED1FCE251577D1007797B7 /* Main.storyboard */,
+				E59922992517262500AF29B9 /* LocationSearchTable.swift */,
 				56ED1FD1251577D3007797B7 /* Assets.xcassets */,
 				E59922912515D81900AF29B9 /* RegisterViewController.swift */,
 				E599228F2515D80C00AF29B9 /* LoginViewController.swift */,
@@ -233,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E59922902515D80C00AF29B9 /* LoginViewController.swift in Sources */,
+				E599229A2517262500AF29B9 /* LocationSearchTable.swift in Sources */,
 				B5577C6D25170701002D37C7 /* ProfileView.swift in Sources */,
 				E59922922515D81900AF29B9 /* RegisterViewController.swift in Sources */,
 				56B11A9F2515FC6200980EE7 /* RadarTracking.swift in Sources */,

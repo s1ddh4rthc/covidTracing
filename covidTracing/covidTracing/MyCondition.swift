@@ -7,6 +7,8 @@
 //
 
 import SwiftUI
+import MapKit
+import Foundation
 
 class MyCondition: UIViewController {
     
@@ -14,6 +16,9 @@ class MyCondition: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var testedText: UITextView!
     @IBOutlet weak var nearbyHospitals: UIButton!
+    
+    var latitude: Double = 0
+    var longitude: Double = 0
     
     @IBAction func switchButtonPressed(_ sender: Any) {
         
@@ -28,6 +33,16 @@ class MyCondition: UIViewController {
         }
         
     }
+    
+    @IBAction func hospitalsButtonPressed(_ sender: Any) {
+        
+        let options = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 37.7762, longitude: -121.9581)))
+        mapItem.name = "Nearest Hospital"
+        mapItem.openInMaps(launchOptions: options)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

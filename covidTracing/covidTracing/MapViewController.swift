@@ -22,43 +22,70 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var yellow: Bool = false
     
     
-    let locationManager = CLLocationManager()
+    var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
-        // Do any additional setup after loading the view.
+        
         super.viewDidLoad()
-        checkLocationServices()
+        
+        let locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+
+        if (CLLocationManager.locationServicesEnabled()) {
+            locationManager.requestAlwaysAuthorization()
+            locationManager.requestWhenInUseAuthorization()
+        }
+
+        if let userLocation = locationManager.location?.coordinate {
+            let span = MKCoordinateSpan.init(latitudeDelta: 0.005, longitudeDelta: 0.005)
+            let coordinate = CLLocationCoordinate2D.init(latitude: userLocation.latitude, longitude: userLocation.longitude)
+            let region = MKCoordinateRegion.init(center: coordinate, span: span)
+            mapView.setRegion(region, animated: true)
+            let annotation = MKPointAnnotation()
+            annotation.title = "Current Location"
+            annotation.coordinate.latitude = userLocation.latitude
+            annotation.coordinate.longitude = userLocation.longitude
+            mapView.addAnnotation(annotation)
+        }
+
+        self.locationManager = locationManager
+
+        DispatchQueue.main.async {
+            self.locationManager.startUpdatingLocation()
+        }
+        
         let db = Firestore.firestore()
         
         var circleArray: [MKCircle] = []
         
         // This is the code for the red zones.
         db.collection("stores").whereField("infectedVisitorCount", isGreaterThan: 0)
-               .getDocuments() { (querySnapshot, error) in
-                   if let error = error {
-                       print("Whoops! There was an error pulling up the documents: \(error)")
-                   } else {
+            .getDocuments() { (querySnapshot, error) in
+                if let error = error {
+                    print("Whoops! There was an error pulling up the documents: \(error)")
+                } else {
                     self.red = true
                     
                     for document in querySnapshot!.documents {
                         if let geo = document.get("geolocation") as? [Double]{
-                        if let name = document.get("name") as? String{
-                            print("infected: \(name)")
-                        let annot = MKPointAnnotation()
-                        annot.coordinate = CLLocationCoordinate2D(latitude: geo[0], longitude: geo[1])
-                        annot.title = name
-                        annot.subtitle = "Infected"
-                        self.mapView.addAnnotation(annot)
-                            let redCircle: MKCircle = MKCircle(center: CLLocationCoordinate2D(latitude: geo[0], longitude: geo[1]), radius: CLLocationDistance(100))
-                            circleArray.append(redCircle)
-                            self.mapView.addOverlay(redCircle)
+                            if let name = document.get("name") as? String{
+                                print("infected: \(name)")
+                                let annot = MKPointAnnotation()
+                                annot.coordinate = CLLocationCoordinate2D(latitude: geo[0], longitude: geo[1])
+                                annot.title = name
+                                annot.subtitle = "Infected"
+                                self.mapView.addAnnotation(annot)
+                                let redCircle: MKCircle = MKCircle(center: CLLocationCoordinate2D(latitude: geo[0], longitude: geo[1]), radius: CLLocationDistance(100))
+                                circleArray.append(redCircle)
+                                self.mapView.addOverlay(redCircle)
+                            }
                         }
+                        
                     }
-                    
                 }
-           }
-    }
-
+        }
+        
         //This is the code to put yellow zones on the map.
         db.collection("stores").whereField("safety", isEqualTo: "crowd")
             .getDocuments() { (querySnapshot, error) in
@@ -68,21 +95,21 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                     self.yellow = true
                     for document in querySnapshot!.documents {
                         if let geo = document.get("geolocation") as? [Double]{
-                        if let name = document.get("name") as? String{
-                            print("Busy: \(name)")
-                        let yellowDots = MKPointAnnotation()
-                            yellowDots.coordinate = CLLocationCoordinate2D(latitude: geo[0], longitude: geo[1])
-                            yellowDots.title = name
-                            yellowDots.subtitle = "Busy"
-                            self.mapView.addAnnotation(yellowDots)
-                            let yellowCircle: MKCircle = MKCircle(center: CLLocationCoordinate2D(latitude: geo[0], longitude: geo[1]), radius: CLLocationDistance(100))
-                            circleArray.append(yellowCircle)
-                            self.mapView.addOverlay(yellowCircle)
+                            if let name = document.get("name") as? String{
+                                print("Busy: \(name)")
+                                let yellowDots = MKPointAnnotation()
+                                yellowDots.coordinate = CLLocationCoordinate2D(latitude: geo[0], longitude: geo[1])
+                                yellowDots.title = name
+                                yellowDots.subtitle = "Busy"
+                                self.mapView.addAnnotation(yellowDots)
+                                let yellowCircle: MKCircle = MKCircle(center: CLLocationCoordinate2D(latitude: geo[0], longitude: geo[1]), radius: CLLocationDistance(100))
+                                circleArray.append(yellowCircle)
+                                self.mapView.addOverlay(yellowCircle)
+                            }
+                        }
                     }
+                    
                 }
-        }
-        
-}
                 
         }
     }
@@ -122,53 +149,24 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
         return finGeo
     }
-        
-    
-    func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-    }
-    
-    func checkLocationServices() {
-        if CLLocationManager.locationServicesEnabled() {
-            setupLocationManager()
-            checkLocationAuthorization()
-        } else {
-            //Alert telling user to enable location services.
-        }
-    }
-    
-    func checkLocationAuthorization() {
-        switch CLLocationManager.authorizationStatus() {
-        case .authorizedWhenInUse:
-            mapView.showsUserLocation = true
-            break
-        case .denied:
-            //Show alert instructing how to turn it on
-            break
-        case .notDetermined:
-            locationManager.requestAlwaysAuthorization()
-        case .restricted:
-            //show user that its restricted
-            break
-        case .authorizedAlways:
-            mapView.showsUserLocation = true
-            break
-        }
-    }
+
 }
 
 
-//extension MapViewController: CLLocationManagerDelegate {
-//
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        //Be back
-//    }
-//
-//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-//        //Be back
-//    }
-//}
-//
+extension MapViewController {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let location = locations.last!
+        let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+        mapView.setRegion(region, animated: true)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        //Be back
+    }
+}
+
 
 

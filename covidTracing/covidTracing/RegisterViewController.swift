@@ -36,6 +36,7 @@ class RegisterViewController: UIViewController {
             !lastName.isEmpty,
             !email.isEmpty,
             !password.isEmpty,
+            password != confPass,
             password.count >= 6 else {
                 return
         }
@@ -44,7 +45,7 @@ class RegisterViewController: UIViewController {
         FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             
             guard result != nil, error == nil else {
-                print("error")
+                print(error?.localizedDescription)
                 return
             }
             
@@ -52,7 +53,7 @@ class RegisterViewController: UIViewController {
                                                               lastName: lastName,
                                                               email: email)) { (success) in
                                                                 if !success {
-                                                                    print("error")
+                                                                    print("error1")
                                                                 }
             }
             
@@ -60,7 +61,7 @@ class RegisterViewController: UIViewController {
                                                                     lastName: lastName,
                                                                     email: email)) { (success) in
                                                                         if !success {
-                                                                            print("error")
+                                                                            print("error2")
                                                                         }
             }
             

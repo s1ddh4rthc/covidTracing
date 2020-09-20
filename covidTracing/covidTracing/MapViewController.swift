@@ -16,6 +16,7 @@ import FirebaseAuth
 class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     
+    @IBOutlet weak var mapButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     
     var red: Bool = false
@@ -27,6 +28,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        configureButtons()
         
         let locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -84,6 +87,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                         
                     }
                 }
+        }
+        
+        //To give attributes to buttons
+        func configureButtons(){
+            mapButton.layer.cornerRadius = 0.1 * mapButton.bounds.size.width
+            mapButton.clipsToBounds = true
         }
         
         //This is the code to put yellow zones on the map.

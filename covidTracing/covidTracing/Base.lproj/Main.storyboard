@@ -300,9 +300,9 @@
         <!--Map-->
         <scene sceneID="mmb-97-5nz">
             <objects>
-                <viewController title="Map" id="5Qh-eF-5aB" customClass="MapViewController" customModule="covidTracing" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Map" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="5Qh-eF-5aB" customClass="MapViewController" customModule="covidTracing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GL3-al-TAj">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AhR-gH-CEq">
@@ -312,12 +312,34 @@
                                     <outlet property="delegate" destination="5Qh-eF-5aB" id="rss-So-RXM"/>
                                 </connections>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bVV-8x-6lS">
+                                <rect key="frame" x="307" y="657" width="19.666666666666657" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="person.circle" catalog="system"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZtX-1h-9xR">
+                                <rect key="frame" x="156" y="641" width="62" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.98970144120000003" green="0.97077495179999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <size key="titleShadowOffset" width="2" height="0.0"/>
+                                <state key="normal" image="map" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7dh-uj-Rgj">
+                                <rect key="frame" x="16" y="644" width="68" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" image="pencil" catalog="system"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="MRf-Ue-uKS"/>
                     </view>
                     <navigationItem key="navigationItem" id="90p-pR-Jp7"/>
                     <connections>
+                        <outlet property="mapButton" destination="ZtX-1h-9xR" id="gNw-Jy-CRV"/>
                         <outlet property="mapView" destination="AhR-gH-CEq" id="Wyr-gr-c8V"/>
                     </connections>
                 </viewController>
@@ -331,5 +353,8 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="cover4" width="473" height="1024"/>
+        <image name="map" catalog="system" width="128" height="113"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
+        <image name="person.circle" catalog="system" width="128" height="121"/>
     </resources>
 </document>

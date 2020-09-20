@@ -27,7 +27,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     override func viewDidLoad() {
         // Do any additional setup after loading the view.
         super.viewDidLoad()
-        // checkLocationServices()
+        checkLocationServices()
         let db = Firestore.firestore()
         
         var circleArray: [MKCircle] = []

@@ -302,7 +302,6 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
                                 <connections>
-                                    <action selector="myConditionPressed:" destination="5Qh-eF-5aB" eventType="touchUpInside" id="PcV-8J-chz"/>
                                     <segue destination="4LT-AX-YuF" kind="show" id="kdI-sC-Lui"/>
                                 </connections>
                             </button>
@@ -486,8 +485,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="kdI-sC-Lui"/>
-        <segue reference="gfQ-TK-7ib"/>
+        <segue reference="BuF-8b-sNB"/>
+        <segue reference="9bC-oR-pwn"/>
         <segue reference="tCg-he-VF4"/>
     </inferredMetricsTieBreakers>
     <resources>

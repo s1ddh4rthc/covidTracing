@@ -5,7 +5,6 @@
 //  Created by Siddharth on 9/18/20.
 //  Copyright © 2020 SAS. All rights reserved.
 //
-
 import UIKit
 import Firebase
 import RadarSDK
@@ -200,4 +199,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
     
     
 }
-

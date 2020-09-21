@@ -5,7 +5,6 @@
 //  Created by Akshay Talkad on 9/19/20.
 //  Copyright © 2020 SAS. All rights reserved.
 //
-
 import CoreLocation
 import MapKit
 import UIKit
@@ -232,6 +231,3 @@ extension MapViewController {
         
     }
 }
-
-
-

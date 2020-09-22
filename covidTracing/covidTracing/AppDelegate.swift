@@ -90,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
                                 print("location success")
                             }
                             //SEND DATA TO LOCATION-SPECIFIC FIREBASE AND THEN INCREMENT
-                            self.sendToLocDb(place: place)
+                            //self.sendToLocDb(place: place)
                         }
                     }
                     else{
@@ -99,74 +99,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, RadarDelegate {
                         self.locDict[place.name] = 1
                     }
                 }
-            }
-        }
-    }
-    
-    func sendToUserDb(place: RadarPlace) {
-        let db = Firestore.firestore()
-        let mail = UserDefaults.standard.string(forKey: "email")
-        let userRep = db.collection("users").document(mail!)
-        
-        userRep.getDocument { (document, error) in
-            if let document = document, document.exists {
-                if var stores = document.get("visitedStores") as? Array<String> {
-                    stores.append(place.name)
-                    document.reference.updateData(["visitedStores": stores])
-                    print("We have now added 1 visited place: \(place.name)")
-                } else {
-                    document.reference.updateData(["visitedStores": place.name])
-                }
-                
-                if var visitTimes =  document.get("visitedTimes") as? Array<Timestamp>{
-                    //get time stamps
-                    visitTimes.append(Timestamp(date: Date(timeIntervalSinceNow: 0)))
-                    //push to firebase
-                    document.reference.updateData([
-                        "visitedTimes": visitTimes
-                    ])
-                } else{
-                    document.reference.updateData([
-                        "visitedTimes": Timestamp(date: Date(timeIntervalSinceNow: 0))
-                    ])
-                }
-            }
-        }
-    }
-    
-    func sendToLocDb(place: RadarPlace) {
-        let db = Firestore.firestore()
-        let locRep = db.collection("stores").document(place.name)
-        
-        //This will pull up all of the information related to a specific location.
-        
-        locRep.getDocument { (doc, error) in
-            if let doc = doc, doc.exists {
-                if var count = doc.get("visitorCount") as? Int{
-                    doc.reference.updateData(["visitorCount": count+1])
-                    
-                    if (count+1>=10) {
-                        doc.reference.updateData(["safety": "unsafe"])
-                    }
-                    
-                }
-            }
-            
-            else {
-                locRep.setData([
-                    "name": place.name,
-                    "geolocation": [place.location.coordinate.latitude, place.location.coordinate.longitude],
-                    "visitorCount" : 1,
-                    "safety": "safe",
-                    "infectedVisitorCount": 0
-                ]) { error in
-                    if let error = error {
-                        print("Whoops! There was an error while creating the location document: \(error)")
-                    } else {
-                        print("The creation of the location document is successful!")
-                    }
-                }
-                
             }
         }
     }

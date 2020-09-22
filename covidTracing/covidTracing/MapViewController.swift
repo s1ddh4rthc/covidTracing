@@ -26,10 +26,18 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
-        configureButtons()
+        
+        // didn't need the function for this
+        mapButton.layer.cornerRadius = 0.5 * mapButton.bounds.size.width
+        mapButton.clipsToBounds = true
+        conditionButton.layer.cornerRadius = 0.5 * conditionButton.bounds.size.width
+        conditionButton.clipsToBounds = true
+        profileButton.layer.cornerRadius = 0.5 * profileButton.bounds.size.width
+        profileButton.clipsToBounds = true
+    
+    
         searchBar.delegate = self
         
         let locationManager = CLLocationManager()
@@ -57,42 +65,36 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
         
         let db = Firestore.firestore()
-        // This is the code for the red zones.
-        db.collection("stores").whereField("infectedVisitorCount", isGreaterThan: 0)
-            .getDocuments() { (querySnapshot, error) in
-                self.red = true
-                for document in querySnapshot!.documents {
-                    if let geo = document.get("geolocation") as? [Double] { //to make sure multithreading doesn't happent
-                        let name = document.get("name") as! String
-                        let annot = MKPointAnnotation()
-                        annot.title = name
-                        annot.subtitle = "Infected"
-                        annot.coordinate = CLLocationCoordinate2D(latitude: geo[0], longitude: geo[1])
-                        self.mapView.addAnnotation(annot)
-                        let redCircle: MKCircle = MKCircle(center: CLLocationCoordinate2D(latitude: geo[0], longitude: geo[1]), radius: CLLocationDistance(75))
-                        self.mapView.addOverlay(redCircle)
+        db.collection("stores")
+            .getDocuments() {
+                (QuerySnapshot, Error) in
+                for document in QuerySnapshot!.documents {
+                    let safety = document.get("safety") as! String
+                    if safety == "crowd" {
+                        self.yellow = true
+                        if let geo = document.get("geolocation") as? [Double] {
+                            let mapAnnot = MKPointAnnotation()
+                                    mapAnnot.title = document.get("name") as? String
+                                    mapAnnot.subtitle = "\(mapAnnot.title) is busy."
+                                    mapAnnot.coordinate = CLLocationCoordinate2D(latitude: geo[0], longitude: geo[1])
+                                    self.mapView.addAnnotation(mapAnnot)
+                        }
+                    }
+                    else if safety == "unsafe" {
+                        self.red = true
+                        if let geo = document.get("geolocation") as? [Double] {
+                                let mapAnnot = MKPointAnnotation()
+                                mapAnnot.title = document.get("name") as? String
+                                mapAnnot.subtitle = "\(mapAnnot.title) has the virus."
+                                mapAnnot.coordinate = CLLocationCoordinate2D(latitude: geo[0], longitude: geo[1])
+                                self.mapView.addAnnotation(mapAnnot)
                     }
                 }
         }
-        
-        //This is the code to put yellow zones on the map.
-        db.collection("stores").whereField("safety", isEqualTo: "crowd")
-            .getDocuments() { (querySnapshot, error) in
-                self.red = false
-                for document in querySnapshot!.documents {
-                            let geo = document.get("geolocation") as! [Double]
-                            let name = document.get("name") as! String
-                            let yellowDots = MKPointAnnotation()
-                            yellowDots.title = name
-                            yellowDots.subtitle = "Busy"
-                            yellowDots.coordinate = CLLocationCoordinate2D(latitude: geo[0], longitude: geo[1])
-                            self.mapView.addAnnotation(yellowDots)
-                            let yellowCircle: MKCircle = MKCircle(center: CLLocationCoordinate2D(latitude: geo[0], longitude: geo[1]), radius: CLLocationDistance(100))
-                            self.mapView.addOverlay(yellowCircle)
-                }
-                
-        }
+
     }
+        }
+        
     
     //To give attributes to buttons
     func configureButtons() {
@@ -102,6 +104,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         conditionButton.clipsToBounds = true
         profileButton.layer.cornerRadius = 0.5 * profileButton.bounds.size.width
         profileButton.clipsToBounds = true
+        
+        return
     }
         
     
@@ -155,21 +159,63 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
 }
 
-
 extension MapViewController {
-    
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+
         let location = locations.last!
         let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
         mapView.setRegion(region, animated: true)
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        
+
     }
 }
+
+//func redZones() {
+//
+//       let db = Firestore.firestore()
+//       db.collection("stores").whereField("safety", isEqualTo: "unsafe")
+//                         .getDocuments() {
+//                             (QuerySnapshot, Error) in
+//                             self.red = true
+//                             for document in QuerySnapshot!.documents {
+//                                 if let geo = document.get("geolocation") as? [Double] {
+//                                     let mapAnnot = MKPointAnnotation()
+//                                     mapAnnot.title = document.get("name") as? String
+//                                     mapAnnot.subtitle = "Location has the virus."
+//                                     mapAnnot.coordinate = CLLocationCoordinate2D(latitude: geo[0], longitude: geo[1])
+//                                     self.mapView.addAnnotation(mapAnnot)
+//                                 }
+//                             }
+//                   }
+//
+//
+//   func yellowZones() {
+//
+//
+//       let db = Firestore.firestore()
+//       db.collection("stores").whereField("safety", isEqualTo: "crowd")
+//           .getDocuments() {
+//               (QuerySnapshot, Error) in
+//               self.yellow = true
+//               for document in QuerySnapshot!.documents{
+//                   if let geo = document.get("geolocation") as? [Double] {
+//                       let mapAnnot = MKPointAnnotation()
+//                       mapAnnot.title = document.get("name") as? String
+//                       mapAnnot.subtitle = "Location is busy."
+//                       mapAnnot.coordinate = CLLocationCoordinate2D(latitude: geo[0], longitude: geo[1])
+//                       self.mapView.addAnnotation(mapAnnot)
+//                   }
+//               }
+//       }
+//   }
+//
+//
+//
+
 
 
 //    Got rid of this and stuff on map came up as red and yellow again
